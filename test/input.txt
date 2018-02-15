@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -85,6 +85,32 @@
   viewall 3
   viewall 4
   viewall 5
+
+##########################################################
+# test edit person command
+##########################################################
+
+  #should catch invalid args format
+  edit Jack Won p/94947853 e/jackw@gmail.com a/111, Alps Street
+  edit 1 Jack Won 94947853 e/jackw@gmail.com a/111, Alps Street
+  edit 1 Jack Won p/94947853 jackw@gmail.com a/111, Alps Street
+  edit 1 Jack Won p/94947853 e/jackw@gmail.com 111, Alps Street
+  edit X Jack Won p/94947853 e/jackw@gmail.com a/111, Alps Street
+
+  #should catch invalid index (out of bounds)
+  edit 348030959 Adam Brown p/94233333 e/adam@gmail.com a/123, Alpha Street
+
+  #should catch invalid person data
+  edit 1 Adam Brown p/111111 e/falseEmail a/123, Alpha Street
+  edit 1 [notAName] p/111111 e/adam@gmail.com a/111, alpha street
+  edit 1 Adam Brown p/not_number e/adam@gmail.com a/111, alpha street t/invalid_-[.tag
+
+  #should not allow duplicate
+  edit 2 Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+
+  #should edit correctly
+  edit 1 John Dough p/87532923 e/johndh@gmail.com a/311, Clementi Ave 3, #02-25 t/friends t/owesMoney
+  list
 
 ##########################################################
 # test find persons command
