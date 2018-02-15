@@ -100,6 +100,15 @@ public class AddressBook {
     }
 
     /**
+     * Edits the target person through its index found within the address book.
+     *
+     * @throws DuplicatePersonException if the edited person details are equivalent to another existing person.
+     */
+    public void editPerson(int targetIndex, Person toEdit) throws DuplicatePersonException {
+        allPersons.edit(targetIndex, toEdit);
+    }
+
+    /**
      * Clears all persons and tags from the address book.
      */
     public void clear() {
